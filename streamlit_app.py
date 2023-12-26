@@ -37,7 +37,6 @@ st.set_page_config(
 with st.sidebar:
     st.balloons()
     st.title('欢迎来到我的应用')
-    st.snow()
     st.balloons()
     st.markdown('---')
 
@@ -288,6 +287,8 @@ def main():
             page_Visualization()
         elif page == '模型':
             page_model()
+    elif username=="" or password=="":
+        st.write("请输入用户信息~")
     else:
         st.write("用户名 or 密码错误！")
 
