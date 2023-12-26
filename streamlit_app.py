@@ -238,7 +238,9 @@ def page_model():
 
 
     data_to_pred=pd.DataFrame({'sepal length (cm)':[feature1],'sepal width (cm)':[feature2],'petal length (cm)':[feature3],'petal width (cm)':[feature4]})
+    st.spinner('正在预测中...')
     result=clf.predict(data_to_pred)
+    st.success('预测完成！')
     with col3:
         st.info("预测结果为：")
         if result==0:
@@ -257,6 +259,7 @@ def page_model():
         dataframe = pd.read_csv(uploaded_file)
         try:
             dataframe=dataframe[['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm)']]
+            st.spinner('正在预测中...')
             dataframe["predict"]=clf.predict(dataframe)
             dataframe["predict"]=dataframe["predict"].replace({0:'setosa',1:'versicolor',2:'virginica'})
             csv = convert_df(dataframe)
@@ -265,6 +268,7 @@ def page_model():
             data=csv,
             file_name='predict_result.csv',
             mime='text/csv')
+            st.success('预测完成！')
         except:
             st.write("The file has errors,please check it!") 
 
