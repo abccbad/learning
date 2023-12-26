@@ -280,15 +280,13 @@ def main():
     # 导航栏
     page = st.sidebar.radio('导航栏', ['数据可视化', '模型'])
 
-    username= st.text_input("用户名", value="")
-    password= st.text_input("密码", value="")
+    username= st.text_input("用户名", value="请输入用户名")
+    password= st.text_input("密码", value="请输入密码")
     if username in ["Jane","Lucy"] and password in ["Jane001","Lucy002"]:
         if page == '数据可视化':
             page_Visualization()
         elif page == '模型':
             page_model()
-    elif username=="" or password=="":
-        st.write("请输入用户信息~")
     else:
         st.write("用户名 or 密码错误！")
 
