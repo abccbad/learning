@@ -13,16 +13,6 @@ from sklearn.metrics import roc_curve,auc
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-
-
-
-data=datasets.load_iris()
-iris=pd.DataFrame(data.data,columns=data.feature_names)
-iris["target"]=data.target
-iris["target_names"]=iris["target"].replace({0:'setosa',1:'versicolor',2:'virginica'})
-
-
-
 def format(fig):
     fig.update_yaxes(matches=None, showticklabels=True, visible=True)
     fig.update_annotations(font=dict(size=16))
@@ -32,6 +22,11 @@ def format(fig):
             fig.layout[axis].title.text = ''
         if type(fig.layout[axis]) == go.layout.XAxis:
             fig.layout[axis].title.text = ''
+
+data=datasets.load_iris()
+iris=pd.DataFrame(data.data,columns=data.feature_names)
+iris["target"]=data.target
+iris["target_names"]=iris["target"].replace({0:'setosa',1:'versicolor',2:'virginica'})
 
 st.set_page_config(
     page_title='鸢尾花',
@@ -46,9 +41,6 @@ with st.sidebar:
 st.write("Has environment variables been set:",
          os.environ["db_username"] == st.secrets["db_username"],
          os.environ["db_password"] == st.secrets["db_password"])
-
-
-
 
 def page_Visualization():
     st.title("鸢尾花数据可视化")
