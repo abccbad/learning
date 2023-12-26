@@ -27,14 +27,12 @@ def format(fig):
     fig.update_yaxes(matches=None, showticklabels=True, visible=True)
     fig.update_annotations(font=dict(size=16))
     fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
-    # 隐藏X轴Y轴标题
     for axis in fig.layout:
         if type(fig.layout[axis]) == go.layout.YAxis:
             fig.layout[axis].title.text = ''
         if type(fig.layout[axis]) == go.layout.XAxis:
             fig.layout[axis].title.text = ''
 
-# 设置全局属性
 st.set_page_config(
     page_title='鸢尾花',
     page_icon=' ',
@@ -76,8 +74,6 @@ def page_Visualization():
     corr=iris[['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)',
         'petal width (cm)']].corr().apply(lambda x:round(x,2))
 
-
-    # 两个轴，可以任意指定
     index=corr.index.tolist()
     columns=corr.columns.tolist()
 
@@ -90,21 +86,17 @@ def page_Visualization():
 
     x=index
     y=columns
-    # 显示的数据
     z =corr.values
-    # 显示的文本内容
     z_text =corr.values
 
     fig = ff.create_annotated_heatmap(
         z,  
         x=x,
         y=y,
-        annotation_text=z_text, # 标注文本内容
+        annotation_text=z_text,
         colorscale="sunset",
         showscale=True
     )
-
-    # 字体大小设置
     for i in range(len(fig.layout.annotations)):
         fig.layout.annotations[i].font.size=12
 
@@ -201,7 +193,6 @@ def page_model():
     #plt.figure(figsize=(12,5),facecolor='w')
     for i in range(3):
         roc_auc = 0
-        #添加文本信息
         if i==0:
             fpr, tpr, threshold = roc_curve(y_list,pre_list[i],pos_label=0)
             # 计算AUC的值
@@ -255,7 +246,24 @@ def page_model():
         else:
             st.write('**virginica**')
     st.info("多样本实时预测")    
-    #pass
+    uploaded_file = st.file_uploader("Choose a csv file")
+
+    @st.cache
+    def convert_df(df):
+        return df.to_csv().encode('utf-8')
+    if uploaded_file is not None:
+        dataframe = pd.read_csv(uploaded_file)
+        try:
+            dataframe=dataframe[['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm)']]
+            dataframe["predict"]=clf.predict(dataframe)
+            csv = convert_df(dataframe)
+            st.download_button(
+            label="Download data as CSV",
+            data=csv,
+            file_name='predict_result.csv',
+            mime='text/csv')
+        except:
+            st.write("The file has errors,please check it!") 
 
 def main():
     # 设置初始页面为Home
