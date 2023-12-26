@@ -1,10 +1,7 @@
-# import os
-# os.chdir(r"E:\jupyterlab_workspace\play\streamlit_test\demo_app")
-
 import streamlit as st
 import pandas as pd
-import plotly.graph_objects as go
 from sklearn.datasets import load_iris
+import plotly.graph_objects as go
 import plotly.figure_factory as ff
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score,f1_score,recall_score, f1_score, precision_score
