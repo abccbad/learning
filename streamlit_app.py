@@ -120,7 +120,7 @@ def train_data(x_train,x_test,y_train,y_test):
     dtr = DecisionTreeClassifier(max_depth=3,random_state=42,min_samples_split=10)
     dtr_score = try_different_method(dtr,'DecisionTreeClassifier')
 
-    lgb = LGBMClassifier(max_depth=3,verbose=-1,random_state=42,min_samples_split=10)
+    lgb = LGBMClassifier(max_depth=3,verbose=-1,random_state=42)
     lgb_score = try_different_method(lgb,'LGBMClassifier')
 
     xgb = XGBClassifier(max_depth=3,random_state=42,min_samples_split=10)
