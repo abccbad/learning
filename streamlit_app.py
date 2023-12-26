@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from sklearn.datasets import load_iris
+from sklearn import datasets
 import plotly.graph_objects as go
 import plotly.figure_factory as ff
 from sklearn.model_selection import train_test_split
@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 
 
-data=load_iris()
+data=datasets.load_iris()
 iris=pd.DataFrame(data.data,columns=data.feature_names)
 iris["target"]=data.target
 iris["target_names"]=iris["target"].replace({0:'setosa',1:'versicolor',2:'virginica'})
