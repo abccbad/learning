@@ -35,7 +35,9 @@ st.set_page_config(
 )
 
 with st.sidebar:
+    st.balloons()
     st.title('欢迎来到我的应用')
+    st.balloons()
     st.markdown('---')
 
 st.write("Has environment variables been set:",
