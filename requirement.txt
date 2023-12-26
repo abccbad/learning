@@ -1,4 +1,3 @@
-streamlit
 pandas
 plotly
 pyecharts
@@ -7,3 +6,4 @@ xgboost
 lightgbm
 numpy
 matplotlib
+streamlit
