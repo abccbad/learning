@@ -12,7 +12,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import roc_curve,auc
 import numpy as np
 import matplotlib.pyplot as plt
-
+import os
 
 
 
@@ -43,6 +43,14 @@ with st.sidebar:
     st.title('欢迎来到我的应用')
     st.markdown('---')
     # st.markdown('这是它的特性：\n- 数据可视化\n- 模型')
+
+st.write("Has environment variables been set:",
+         os.environ["db_username"] == st.secrets["db_username"],
+         os.environ["db_password"] == st.secrets["db_password"])
+
+
+
+
 def page_Visualization():
     st.title("鸢尾花数据可视化")
     st.info('不同物种各个特征的小提琴图')
