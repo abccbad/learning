@@ -256,6 +256,7 @@ def page_model():
         try:
             dataframe=dataframe[['sepal length (cm)','sepal width (cm)','petal length (cm)','petal width (cm)']]
             dataframe["predict"]=clf.predict(dataframe)
+            dataframe["predict"]=dataframe["predict"].replace({0:'setosa',1:'versicolor',2:'virginica'})
             csv = convert_df(dataframe)
             st.download_button(
             label="Download data as CSV",
