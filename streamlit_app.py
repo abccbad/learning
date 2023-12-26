@@ -282,12 +282,13 @@ def main():
 
     username= st.text_input("用户名", value="请输入用户名")
     password= st.text_input("密码", value="请输入密码")
-    if username in ["Jane","Lucy"] and password in ["Jane001","Lucy002"]:
-        if page == '数据可视化':
-            page_Visualization()
-        elif page == '模型':
-            page_model()
-    else:
+    try:
+        if username in ["Jane","Lucy"] and password in ["Jane001","Lucy002"]:
+            if page == '数据可视化':
+                page_Visualization()
+            elif page == '模型':
+                page_model()
+    except:
         st.write("用户名 or 密码错误！")
 
 if __name__ == '__main__':
