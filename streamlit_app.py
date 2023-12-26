@@ -44,6 +44,14 @@ with st.sidebar:
     st.markdown('---')
     # st.markdown('这是它的特性：\n- 数据可视化\n- 模型')
 
+st.experimental_feature_warning('user_info_proxy')
+# 获取当前用户信息
+user_info = st.experimental_user_info_proxy.get_current_user_info()
+# 显示用户信息
+st.write('db_username:', user_info['db_username'])
+st.write('db_password:', user_info['db_password'])
+
+
 st.write("Has environment variables been set:",
          os.environ["db_username"] == st.secrets["db_username"],
          os.environ["db_password"] == st.secrets["db_password"])
